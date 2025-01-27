@@ -10,8 +10,8 @@ end
 
 # Constructs an Option{T} value
 function some(value::Any)
-    @match value begin   
-        ::Nothing => return Option(Nothing, true) 
+    @match value begin
+        ::Nothing => return Option(Nothing, true)
         _ => return Option(value, false)
     end
 end
@@ -54,15 +54,20 @@ function is_nothing_or(option::Option, f)
         true => return true
         _ => return f(unwrap(option))
     end
-end 
+end
 
 # Unwrap the option or return the provided input alternative 
 function unwrap_and(option::Option, alternative)
     @match option.is_nothing begin
-        true => return alternative 
+        true => return alternative
         _ => return unwrap(option)
     end
-end 
+end
 
-
+macro pull!(option)
+    @match !(option isa Option) || !(option isa Result) begin
+        true => return :($(esc(option)).value)
+        _ => return :($(esc(typeof(option))))
+    end
+end
 
