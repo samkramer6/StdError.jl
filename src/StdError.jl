@@ -1,9 +1,5 @@
-using Pkg
-Pkg.instantiate()
-Pkg.resolve()
-Pkg.activate()
-
 module StdError
+
 include("option.jl")
 export some
 export is_some
