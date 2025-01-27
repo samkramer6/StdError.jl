@@ -1,3 +1,5 @@
+include("../src/StdError.jl")
+using .StdError
 using Test
 using Pkg
 Pkg.instantiate()

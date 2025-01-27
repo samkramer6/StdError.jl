@@ -1,4 +1,8 @@
 #TODO: test all these functions
+
+import Pkg
+Pkg.add(["Match"])      # Add the match package for project
+
 using Match
 
 struct Option{T}
